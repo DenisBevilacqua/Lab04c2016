@@ -9,7 +9,7 @@ import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Reserva;
 
 public class ListaReservaActivity extends AppCompatActivity {
 
-    public static ArrayList<Reserva> reservas;
+    public static ArrayList<Reserva> reservas = new ArrayList<Reserva>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,5 +1,6 @@
 package dam.isi.frsf.utn.edu.ar.laboratorio04;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +36,11 @@ public class AltaReservaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ListaReservaActivity.reservas.add(res);
                 Toast.makeText(getApplicationContext(), "Se ha reservado el alojamiento",Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(getApplicationContext(), ListaReservaActivity.class);
+
+                startActivityForResult(intent, 0);
+
             }
         });
     }
