@@ -24,7 +24,8 @@
         android:textStyle="bold|italic"
         android:typeface="serif"
         android:background="#d3e8f2"
-        android:textColor="#691515" />
+        android:textColor="#461a1a"
+        android:padding="7dp" />
 
     <TextView
         android:layout_width="match_parent"

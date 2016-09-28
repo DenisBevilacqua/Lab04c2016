@@ -16,6 +16,12 @@ import dam.isi.frsf.utn.edu.ar.laboratorio04.utils.FormBusqueda;
  */
 public class BuscarDepartamentosTask extends AsyncTask<FormBusqueda,Integer,List<Departamento>> {
 
+    public interface AsyncResponse {
+        void processFinish(List<Departamento> output);
+    }
+
+    public AsyncResponse delegate = null;
+
     private BusquedaFinalizadaListener<Departamento> listener;
 
     public BuscarDepartamentosTask(BusquedaFinalizadaListener<Departamento> dListener){
@@ -28,6 +34,7 @@ public class BuscarDepartamentosTask extends AsyncTask<FormBusqueda,Integer,List
 
     @Override
     protected void onPostExecute(List<Departamento> departamentos) {
+        delegate.processFinish(departamentos);
     }
 
     @Override
@@ -42,9 +49,27 @@ public class BuscarDepartamentosTask extends AsyncTask<FormBusqueda,Integer,List
         List<Departamento> todos = Departamento.getAlojamientosDisponibles();
         List<Departamento> resultado = new ArrayList<Departamento>();
         int contador = 0;
+
         Ciudad ciudadBuscada = busqueda[0].getCiudad();
+        Double precioMinimo = busqueda[0].getPrecioMinimo();
+        Double precioMaximo = busqueda[0].getPrecioMaximo();
+        Boolean permiteFumar = busqueda[0].getPermiteFumar();
+        Integer huespedes = busqueda[0].getHuespedes();
+
+        /*for (int i = 0; i < todos.size(); i++){
+            if (huespedes > 1)
+                if (todos.get(i).getCantidadHabitaciones()>1){
+                    resultado.add(todos.get(i));
+                }
+
+        }*/
+
+        resultado.add(todos.get(0));
+
         // TODO implementar: buscar todos los departamentos del sistema e ir chequeando las condiciones 1 a 1.
         // si cumplen las condiciones agregarlo a los resultados.
         return resultado;
     }
 }
+
+
