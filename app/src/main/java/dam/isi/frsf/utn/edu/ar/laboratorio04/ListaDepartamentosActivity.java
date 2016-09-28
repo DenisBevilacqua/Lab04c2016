@@ -4,13 +4,19 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Reserva;
 import dam.isi.frsf.utn.edu.ar.laboratorio04.utils.BuscarDepartamentosTask;
 import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Departamento;
 import dam.isi.frsf.utn.edu.ar.laboratorio04.utils.BusquedaFinalizadaListener;
@@ -31,6 +37,8 @@ public class ListaDepartamentosActivity extends AppCompatActivity implements Bus
         listaAlojamientos= (ListView ) findViewById(R.id.listaAlojamientos);
         tvEstadoBusqueda = (TextView) findViewById(R.id.estadoBusqueda);
 
+        registerForContextMenu(listaAlojamientos);
+
     }
 
     @Override
@@ -49,6 +57,79 @@ public class ListaDepartamentosActivity extends AppCompatActivity implements Bus
         }
         departamentosAdapter = new DepartamentoAdapter(ListaDepartamentosActivity.this,lista);
         listaAlojamientos.setAdapter(departamentosAdapter);
+    }
+
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        MenuInflater inflater = getMenuInflater();
+
+        if(v.getId() == R.id.listaAlojamientos)
+        {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
+
+            Departamento dep = (Departamento)  listaAlojamientos.getAdapter().getItem(info.position);
+
+            menu.setHeaderTitle("Opciones para " + dep.getDescripcion());
+        }
+
+        inflater.inflate(R.menu.reservar,menu);
+
+        // Get the list
+        ListView list = (ListView) v;
+
+        // Get the list item position
+        /*AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+        int position = info.position;*/
+
+        // Now you can do whatever.. (Example, load different menus for different items)
+        //list.getItem(position);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        switch (item.getItemId()) {
+
+
+            case R.id.compartir:
+
+                /*Toast.makeText(this, "Compartiendo",
+                        Toast.LENGTH_LONG).show();*/
+
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Me interesa el departamento '" + listaAlojamientos.getAdapter().getItem(info.position).toString() + "'. Enviado desde Lab04c2016");
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+                return true;
+
+            case R.id.reservar:
+
+                //TODO
+
+                Intent intent = new Intent(this, AltaReservaActivity.class);
+
+                Departamento dep = (Departamento) listaAlojamientos.getAdapter().getItem(info.position);
+
+                intent.putExtra("Departamento", dep);
+
+                startActivityForResult(intent, 0);
+
+                /*Departamento dep = (Departamento) listaAlojamientos.getAdapter().getItem(info.position);
+                Reserva res = new Reserva();
+                res.setAlojamiento(dep);*/
+
+                /*Toast.makeText(this, "Usted se ha postulado a la oferta de trabajo " + listaAlojamientos.getAdapter().getItem(info.position).toString(),
+                        Toast.LENGTH_LONG).show();*/
+
+
+        }
+
+        return true;
     }
 
     @Override
