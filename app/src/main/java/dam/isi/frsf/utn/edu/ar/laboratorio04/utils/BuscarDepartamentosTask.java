@@ -34,13 +34,12 @@ public class BuscarDepartamentosTask extends AsyncTask<FormBusqueda,Integer,List
 
     @Override
     protected void onPostExecute(List<Departamento> departamentos) {
-        delegate.processFinish(departamentos);
+       listener.busquedaFinalizada(departamentos);
     }
 
     @Override
     protected void onProgressUpdate(Integer... values) {
         listener.busquedaActualizada("departamento "+values[0]);
-
 
     }
 
