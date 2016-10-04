@@ -2,6 +2,8 @@ package dam.isi.frsf.utn.edu.ar.laboratorio04.utils;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.SeekBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,15 +57,24 @@ public class BuscarDepartamentosTask extends AsyncTask<FormBusqueda,Integer,List
         Boolean permiteFumar = busqueda[0].getPermiteFumar();
         Integer huespedes = busqueda[0].getHuespedes();
 
-        /*for (int i = 0; i < todos.size(); i++){
-            if (huespedes > 1)
-                if (todos.get(i).getCantidadHabitaciones()>1){
-                    resultado.add(todos.get(i));
-                }
 
-        }*/
+        if(precioMinimo == null) precioMinimo = 0.0;
+        if(precioMaximo == null) precioMaximo = 5000.0;
+        //if(permiteFumar == null) permiteFumar = false;
+        if(huespedes == null) huespedes = 0;
 
-        resultado.add(todos.get(0));
+
+
+        for (Departamento actual : todos){
+            if(actual.getPrecio()>=precioMinimo && actual.getPrecio()<= precioMaximo
+                    /*&& (actual.getNoFumador() == permiteFumar) */&& actual.getCiudad().equals(ciudadBuscada)
+                    && actual.getCapacidadMaxima()>= huespedes){
+                resultado.add(actual);
+            }
+
+        }
+        //resultado.add(todos.get(0))
+        System.out.println(resultado.size());
 
         // TODO implementar: buscar todos los departamentos del sistema e ir chequeando las condiciones 1 a 1.
         // si cumplen las condiciones agregarlo a los resultados.

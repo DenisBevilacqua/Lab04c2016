@@ -104,29 +104,31 @@ public class Departamento implements Serializable {
     }
 
 
-        public Integer getCantidadHabitaciones() {
-            return cantidadHabitaciones;
-        }
+    public Integer getCantidadHabitaciones() {
+        return cantidadHabitaciones;
+    }
 
-        public void setCantidadHabitaciones(Integer cantidadHabitaciones) {
-            this.cantidadHabitaciones = cantidadHabitaciones;
-        }
+    public void setCantidadHabitaciones(Integer cantidadHabitaciones) {
+        this.cantidadHabitaciones = cantidadHabitaciones;
+    }
 
-        public Integer getCantidadCamas() {
-            return cantidadCamas;
-        }
+    public Integer getCantidadCamas() {
+        return cantidadCamas;
+    }
 
-        public void setCantidadCamas(Integer cantidadCamas) {
-            this.cantidadCamas = cantidadCamas;
-        }
+    public void setCantidadCamas(Integer cantidadCamas) {
+        this.cantidadCamas = cantidadCamas;
+    }
 
-        public String getTelefonoPropietario() {
-            return telefonoPropietario;
-        }
+    public String getTelefonoPropietario() {
+        return telefonoPropietario;
+    }
 
-        public void setTelefonoPropietario(String telefonoPropietario) {
-            this.telefonoPropietario = telefonoPropietario;
-        }
+    public void setTelefonoPropietario(String telefonoPropietario) {
+        this.telefonoPropietario = telefonoPropietario;
+    }
+
+    public Boolean getNoFumador(){return noFumador;}
 
 
     @Override

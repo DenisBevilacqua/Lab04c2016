@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onClick(View view) {
             Intent i = new Intent(MainActivity.this,ListaDepartamentosActivity.class);
-            frmBusq.setPermiteFumar(swFumadores.isSelected());
+            frmBusq.setPermiteFumar(swFumadores.isChecked());
             i.putExtra("esBusqueda",true);
             i.putExtra("frmBusqueda",frmBusq);
             startActivity(i);
@@ -109,10 +109,16 @@ public class MainActivity extends AppCompatActivity
             if(seekBar.getId()==R.id.precioMin) {
                 tvPrecioMinimo.setText("Precio Minimo "+progress);
                 frmBusq.setPrecioMinimo(Double.valueOf(progress));
+                if(progress>=skPrecioMax.getProgress()) {
+                    skPrecioMax.setProgress(progress);
+                }
             }
             if(seekBar.getId()==R.id.precioMax) {
-                tvPrecioMaximo.setText("Precio Maximo"+progress);
+                tvPrecioMaximo.setText("Precio Maximo "+progress);
                 frmBusq.setPrecioMaximo(Double.valueOf(progress));
+                if(progress<=skPrecioMin.getProgress()) {
+                    skPrecioMin.setProgress(progress);
+                }
             }
         }
 
