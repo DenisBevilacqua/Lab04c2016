@@ -37,6 +37,8 @@ public class ListaDepartamentosActivity extends AppCompatActivity implements Bus
         listaAlojamientos= (ListView ) findViewById(R.id.listaAlojamientos);
         tvEstadoBusqueda = (TextView) findViewById(R.id.estadoBusqueda);
 
+        setTitle("Listado de departamentos");
+
         registerForContextMenu(listaAlojamientos);
 
     }

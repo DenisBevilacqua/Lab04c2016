@@ -18,6 +18,8 @@ public class ListaReservaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_reserva);
 
+        setTitle("Listado de reservas");
+
         listViewReservas = (ListView) findViewById(R.id.listReservas);
     }
 
