@@ -11,6 +11,7 @@ import android.net.ParseException;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -29,13 +30,14 @@ public class AltaReservaActivity extends AppCompatActivity {
     Button botonReservar;
     EditText fecha_inicio;
     EditText fecha_fin;
+    Reserva res;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alta_reserva);
 
-        final Reserva res = new Reserva();
+        res = new Reserva();
 
         datosDepto = (TextView) findViewById(R.id.datosAltaDepto);
         botonReservar = (Button)findViewById(R.id.reservar);
@@ -78,47 +80,17 @@ public class AltaReservaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Calendar c = new GregorianCalendar();
-                c.set(Calendar.HOUR_OF_DAY, 0); //anything 0 - 23
-                c.set(Calendar.MINUTE, 0);
-                c.set(Calendar.SECOND, 0);
-                Date d1 = c.getTime();
 
-               /* String dtStart = fecha_inicio.getText().toString();
-                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");*/
-                try {
-                    /*Date date = format.parse(dtStart);
-                    res.setFechaInicio(date);*/
-                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                    Date date = new Date();
-                    res.setFechaFin(d1);
 
-                } catch (ParseException e) {
-                    // TODO Auto-generated catch block
-                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                    Date date = new Date();
-                    res.setFechaInicio(d1);
+               String dtStart = fecha_inicio.getText().toString();
 
-                    e.printStackTrace();
-                }
+                res.setFechaInicio(dtStart);
 
-                /*String dtStart2 = fecha_fin.getText().toString();
-                SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");*/
 
-                try {
-                    /*Date date = format.parse(dtStart);
-                    res.setFechaFin(date);*/
-                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                    Date date = new Date();
-                    res.setFechaFin(d1);
-                } catch (ParseException e) {
-                    // TODO Auto-generated catch block
-                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                    Date date = new Date();
-                    res.setFechaFin(d1);
+                String dtStart2 = fecha_fin.getText().toString();
 
-                    e.printStackTrace();
-                }
+                res.setFechaFin(dtStart2);
+
 
                 //res.setFechaInicio();
                 ListaReservaActivity.reservas.add(res);
@@ -145,7 +117,17 @@ public class AltaReservaActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
 
                 elemento.setText(selectedday + "/" + selectedmonth + "/" + selectedyear);
-                    /*      Your code   to get date and time    */
+
+                String dtStart = elemento.getText().toString();
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                Date date = null;
+                try {
+                    date = format.parse(dtStart);
+                } catch (java.text.ParseException e) {
+                    e.printStackTrace();
+                }
+
+
             }
         },mYear, mMonth, mDay);
         mDatePicker.setTitle("Seleccionar Fecha");

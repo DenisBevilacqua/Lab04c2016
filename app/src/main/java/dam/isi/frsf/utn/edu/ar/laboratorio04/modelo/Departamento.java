@@ -1,5 +1,10 @@
 package dam.isi.frsf.utn.edu.ar.laboratorio04.modelo;
 
+import android.annotation.TargetApi;
+import android.icu.text.DateFormat;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -144,7 +149,11 @@ public class Departamento implements Serializable {
     private static final List<Departamento> _ALOJAMIENTOS_DISPONIBLES= new ArrayList<Departamento>();
     private static Boolean _FLAG_INICIALIZADO = false;
 
+    @TargetApi(Build.VERSION_CODES.N)
     public static List<Departamento> getAlojamientosDisponibles(){
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
         Random rReservas = new Random();
         if(_FLAG_INICIALIZADO) return  _ALOJAMIENTOS_DISPONIBLES;
 
@@ -159,7 +168,7 @@ public class Departamento implements Serializable {
                 inicio.add(Calendar.DAY_OF_YEAR,inicioreserva);
                 Date fechaInicio = inicio.getTime();
                 inicio.add(Calendar.DAY_OF_YEAR, rReservas.nextInt(8)+1);
-                Reserva r = new Reserva((i*10)+j,fechaInicio ,inicio.getTime(),aux);
+                Reserva r = new Reserva((i*10)+j,df.format(fechaInicio) ,df.format(inicio.getTime()),aux);
                 aux.getReservas().add(r);
             }
         }

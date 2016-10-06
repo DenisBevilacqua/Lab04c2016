@@ -47,6 +47,8 @@ public class ReservaAdapter extends ArrayAdapter<Reserva> {
 
         //Faltan estas dos lineas pero explota por puntero nulo
 
+
+        // MOSTRAMOS LA FECHA DE HOY SI HAY ALGUN ERROR.
         Calendar c = new GregorianCalendar();
         c.set(Calendar.HOUR_OF_DAY, 0); //anything 0 - 23
         c.set(Calendar.MINUTE, 0);
@@ -56,8 +58,22 @@ public class ReservaAdapter extends ArrayAdapter<Reserva> {
         /*fechaInicio.setText(df.format(this.getItem(position).getFechaInicio()));
         fechaFin.setText(df.format(this.getItem(position).getFechaFin()));*/
 
-        fechaInicio.setText(df.format(d1));
-        fechaFin.setText(df.format(d1));
+        /*fechaInicio.setText(df.format(d1));
+        fechaFin.setText(df.format(d1));*/
+
+        try {
+            fechaInicio.setText(this.getItem(position).getFechaInicio().toString());
+        }
+        catch (Exception e){
+            fechaInicio.setText("No existe fecha de inicio");
+        }
+
+        try {
+            fechaFin.setText(this.getItem(position).getFechaFin().toString());
+        }
+        catch (Exception e){
+            fechaFin.setText("No existe fecha de fin");
+        }
 
         return row;
     }

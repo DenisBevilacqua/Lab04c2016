@@ -9,8 +9,8 @@ import java.util.Date;
 public class Reserva implements Serializable {
 
     private Integer id;
-    private Date fechaInicio;
-    private Date fechaFin;
+    private String fechaInicio;
+    private String fechaFin;
     private Departamento departamento;
     private Double precio;
     private Usuario usuario;
@@ -18,7 +18,7 @@ public class Reserva implements Serializable {
 
     public Reserva(){}
 
-    public Reserva(Integer id, Date fechaInicio, Date fechaFin, Departamento departamento) {
+    public Reserva(Integer id, String fechaInicio, String fechaFin, Departamento departamento) {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
@@ -33,19 +33,19 @@ public class Reserva implements Serializable {
         this.id = id;
     }
 
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public String getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
     }
 
