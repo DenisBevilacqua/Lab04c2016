@@ -67,12 +67,14 @@ public class AltaReservaActivity extends AppCompatActivity {
         Departamento depto = (Departamento) getIntent().getSerializableExtra("Departamento");
         res.setAlojamiento(depto);
 
-        Intent alarmIntent = new Intent(AltaReservaActivity.this, AlarmReceiver.class);
+        final Intent alarmIntent = new Intent(AltaReservaActivity.this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(AltaReservaActivity.this, 0, alarmIntent, 0);
 
         datosDepto.setText("Usted alquilará el departamento " + depto.getDescripcion());
 
         setTitle("Realizar reserva");
+
+
 
         fecha_inicio.setOnClickListener(new View.OnClickListener() {
 
@@ -120,6 +122,8 @@ public class AltaReservaActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), ListaReservaActivity.class);
 
+
+
                 startActivityForResult(intent, 0);
 
 
@@ -138,23 +142,25 @@ public class AltaReservaActivity extends AppCompatActivity {
                 calendar.set(Calendar.HOUR_OF_DAY, 10);
                 calendar.set(Calendar.MINUTE, 30);
 
+
+                alarmIntent.putExtra("Reserva", res);
                 /* Repetir cada 15 segundps */
                 // Despues de android 5.1 no se pueden generar notificaciones con intervalos de menos de 1 minuto
-                manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000 * 1 * 2, pendingIntent);
+                //manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000 * 1 * 2, pendingIntent);
 
-                /*final Handler handler = new Handler();
+                final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
 
-                        manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-
+                       // manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+                        sendBroadcast(alarmIntent);
 
                         //Do something after 20 seconds
-                        handler.postDelayed(this, 10000);
+                        handler.postDelayed(this, 15000);
                     }
-                }, 200000);  //the time is in miliseconds
-                */
+                }, 2000);  //the time is in miliseconds
+
 
             }
         });

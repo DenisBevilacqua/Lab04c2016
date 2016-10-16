@@ -11,6 +11,15 @@ public class Reserva implements Serializable {
     private Integer id;
     private String fechaInicio;
     private String fechaFin;
+
+    public Departamento getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+    }
+
     private Departamento departamento;
     private Double precio;
     private Usuario usuario;
