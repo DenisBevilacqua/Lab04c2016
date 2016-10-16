@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dam.isi.frsf.utn.edu.ar.laboratorio04">
-
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,17 +21,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ListaDepartamentosActivity"/>
-        <activity android:name=".AltaReservaActivity"/>
-        <receiver android:name=".AlarmReceiver"
+        <activity android:name=".ListaDepartamentosActivity" />
+        <activity android:name=".AltaReservaActivity" />
+
+        <receiver
+            android:name=".AlarmReceiver"
             android:enabled="true"
-            android:process=":remote">
-        </receiver>
-        <activity android:name=".ListaReservaActivity"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+            android:process=":remote"></receiver>
+
+        <activity android:name=".ListaReservaActivity" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".PreferenciasActivity"
+            android:label="@string/title_activity_preferencias"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

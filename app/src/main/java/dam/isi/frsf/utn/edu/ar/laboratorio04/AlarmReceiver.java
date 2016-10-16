@@ -16,6 +16,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Reserva;
+import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Usuario;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
@@ -53,6 +54,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         // Invoking the default notification service
         NotificationCompat.Builder  mBuilder = new NotificationCompat.Builder(context);
 
+
         mBuilder.setContentTitle("Reserva realizada");
         mBuilder.setContentText("Se ha reservado el departamento "+ reserva.getDepartamento().getDescripcion());
         mBuilder.setTicker("Se ha realizado la reserva");
@@ -68,6 +70,14 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         mBuilder.setContentIntent(contentIntent);
         mBuilder.setDefaults(Notification.DEFAULT_SOUND);
+
+        //PreferenciasActivity p = new PreferenciasActivity();
+
+        //Usuario user = new Usuario();
+        //Toast.makeText(context, user.getUri().toString() , Toast.LENGTH_SHORT).show();
+
+       // mBuilder.setSound(user.getUri());
+
         mBuilder.setAutoCancel(true);
         NotificationManager mNotificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

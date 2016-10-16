@@ -1,5 +1,7 @@
 package dam.isi.frsf.utn.edu.ar.laboratorio04.modelo;
 
+import android.net.Uri;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,6 +14,18 @@ public class Usuario implements Serializable {
     private String correo;
     private List<Reserva> reservas;
     private Integer puntosSuperPremio;
+    private static Uri uri;
+
+
+    public static Uri getUri() {
+        return uri;
+    }
+
+    public void setUri(Uri uri) {
+        this.uri = uri;
+    }
+
+
 
 
     public Integer getId() {
