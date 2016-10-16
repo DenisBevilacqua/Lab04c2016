@@ -233,26 +233,4 @@ public class AltaReservaActivity extends AppCompatActivity {
         client.disconnect();
     }
 
-    public void crearNotificacion(){
-        NotificationCompat.Builder nBuilder = new NotificationCompat.Builder(this);
-        nBuilder.setContentTitle("Notification");
-        nBuilder.setContentText("You have received a new Notification");
-        nBuilder.setTicker("New Message");
-        nBuilder.setAutoCancel(true);
-        nBuilder.setSmallIcon(R.drawable.ic_menu_gallery);
-
-        Intent intent = new Intent(this, AltaReservaActivity.class);
-
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addParentStack(AltaReservaActivity.class);
-
-        stackBuilder.addNextIntent(intent);
-
-        PendingIntent pendingIntent = stackBuilder.getPendingIntent(0,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        nBuilder.setContentIntent(pendingIntent);
-
-        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(1, nBuilder.build());
-    }
 }

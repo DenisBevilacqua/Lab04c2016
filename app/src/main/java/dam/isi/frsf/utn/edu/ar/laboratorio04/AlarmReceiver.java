@@ -22,23 +22,23 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         // For our recurring task, we'll just display a message
 
-        /*long mili = System.currentTimeMillis();
+        long mili = System.currentTimeMillis();
 
         int milisegundos = (int) mili;
 
-        Integer resto = milisegundos%2;
+        Integer resto = milisegundos%3;
 
         if(resto == 0){
-
             Toast.makeText(context, "Es multiplo de 3. Se generará una notificacion." , Toast.LENGTH_SHORT).show();
-        }
+            showNotification(context);
+             }
 
         else
 
-        { Toast.makeText(context, "No se generará notificación." , Toast.LENGTH_SHORT).show();
-        }*/
-        Toast.makeText(context, "Cramos una notificacion" , Toast.LENGTH_SHORT).show();
-        showNotification(context);
+        {
+            Toast.makeText(context, "No se generará notificación. No es múltiplo de 3." , Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 
@@ -49,9 +49,9 @@ public class AlarmReceiver extends BroadcastReceiver {
         // Invoking the default notification service
         NotificationCompat.Builder  mBuilder = new NotificationCompat.Builder(context);
 
-        mBuilder.setContentTitle("New Message with explicit intent");
-        mBuilder.setContentText("New message from javacodegeeks received");
-        mBuilder.setTicker("Explicit: New Message Received!");
+        mBuilder.setContentTitle("Laboratorio 4");
+        mBuilder.setContentText("Nuevo mensaje recibido");
+        mBuilder.setTicker("Mensaje");
         mBuilder.setSmallIcon(R.drawable.ic_menu_camera);
 
         mBuilder.setContentIntent(contentIntent);
