@@ -2,8 +2,8 @@ package dam.isi.frsf.utn.edu.ar.laboratorio04;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.icu.util.Calendar;
-import android.icu.util.GregorianCalendar;
+//import android.icu.util.Calendar;
+//import android.icu.util.GregorianCalendar;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Reserva;

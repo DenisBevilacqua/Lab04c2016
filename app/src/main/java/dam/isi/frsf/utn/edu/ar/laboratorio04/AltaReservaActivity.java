@@ -9,8 +9,9 @@ import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.icu.text.DateFormat;
-import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
+//import android.icu.text.SimpleDateFormat;
+import java.text.SimpleDateFormat;
+//import android.icu.util.Calendar;
 import android.icu.util.GregorianCalendar;
 import android.net.ParseException;
 import android.net.Uri;
@@ -31,6 +32,7 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 

@@ -1,11 +1,13 @@
 package dam.isi.frsf.utn.edu.ar.laboratorio04.modelo;
 
 import android.annotation.TargetApi;
-import android.icu.text.DateFormat;
-import android.icu.text.SimpleDateFormat;
+//import android.icu.text.DateFormat;
+//import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
