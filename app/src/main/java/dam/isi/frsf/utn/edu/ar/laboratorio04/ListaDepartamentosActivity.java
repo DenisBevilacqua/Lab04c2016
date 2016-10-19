@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Reserva;
+import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Usuario;
 import dam.isi.frsf.utn.edu.ar.laboratorio04.utils.BuscarDepartamentosTask;
 import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Departamento;
 import dam.isi.frsf.utn.edu.ar.laboratorio04.utils.BusquedaFinalizadaListener;
@@ -28,6 +29,7 @@ public class ListaDepartamentosActivity extends AppCompatActivity implements Bus
     private ListView listaAlojamientos;
     private DepartamentoAdapter departamentosAdapter;
     private List<Departamento> lista;
+    private Usuario user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,8 @@ public class ListaDepartamentosActivity extends AppCompatActivity implements Bus
         }
         departamentosAdapter = new DepartamentoAdapter(ListaDepartamentosActivity.this,lista);
         listaAlojamientos.setAdapter(departamentosAdapter);
+
+        user = (Usuario) intent.getSerializableExtra("Usuario");
     }
 
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -119,6 +123,7 @@ public class ListaDepartamentosActivity extends AppCompatActivity implements Bus
 
                 intent.putExtra("Departamento", dep);
 
+                intent.putExtra("Usuario", user);
                 startActivityForResult(intent, 0);
 
                 /*Departamento dep = (Departamento) listaAlojamientos.getAdapter().getItem(info.position);

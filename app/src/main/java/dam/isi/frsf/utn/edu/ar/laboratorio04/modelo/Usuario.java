@@ -16,6 +16,16 @@ public class Usuario implements Serializable {
     private Integer puntosSuperPremio;
     private static Uri uri;
 
+    public String getUriString() {
+        return uriString;
+    }
+
+    public void setUriString(String uriString) {
+        this.uriString = uriString;
+    }
+
+    private String uriString;
+
 
     public static Uri getUri() {
         return uri;
@@ -24,9 +34,6 @@ public class Usuario implements Serializable {
     public void setUri(Uri uri) {
         this.uri = uri;
     }
-
-
-
 
     public Integer getId() {
         return id;

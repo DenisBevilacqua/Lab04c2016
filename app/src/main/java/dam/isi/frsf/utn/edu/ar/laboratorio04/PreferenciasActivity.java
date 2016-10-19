@@ -11,6 +11,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -22,15 +23,7 @@ import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Usuario;
 public class PreferenciasActivity extends AppCompatActivity {
     Button b;
     static Uri chosenRingtone;
-
-    public static Uri getChosenRingtone() {
-        return chosenRingtone;
-    }
-
-    public static void setChosenRingtone(Uri chosenRingtone) {
-        PreferenciasActivity.chosenRingtone = chosenRingtone;
-    }
-
+    private static Usuario usuario;
 
 
     @Override
@@ -70,16 +63,33 @@ public class PreferenciasActivity extends AppCompatActivity {
             Uri uri = intent.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
 
             if (uri != null) {
-                Usuario usuario = new Usuario();
+                usuario = new Usuario();
                 usuario.setUri(uri);
+                usuario.setUriString(uri.toString());
 
                 this.chosenRingtone = uri;
                 Toast.makeText(getApplicationContext(), this.chosenRingtone.toString() , Toast.LENGTH_SHORT).show();
+
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("result",usuario);
+                setResult(Activity.RESULT_OK,returnIntent);
+                finish();
             } else {
                 this.chosenRingtone = null;
             }
         }
     }
 
+    public static Uri getChosenRingtone() {
+        return chosenRingtone;
+    }
+
+    public static void setChosenRingtone(Uri chosenRingtone) {
+        PreferenciasActivity.chosenRingtone = chosenRingtone;
+    }
+
+    public static Usuario getUsuario() {
+        return usuario;
+    }
 
 }

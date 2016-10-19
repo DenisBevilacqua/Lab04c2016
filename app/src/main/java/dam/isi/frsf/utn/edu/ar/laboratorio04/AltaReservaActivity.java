@@ -38,6 +38,7 @@ import java.util.concurrent.TimeUnit;
 
 import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Departamento;
 import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Reserva;
+import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Usuario;
 
 public class AltaReservaActivity extends AppCompatActivity {
 
@@ -68,6 +69,9 @@ public class AltaReservaActivity extends AppCompatActivity {
 
         Departamento depto = (Departamento) getIntent().getSerializableExtra("Departamento");
         res.setAlojamiento(depto);
+
+        Usuario user = (Usuario) getIntent().getSerializableExtra("Usuario");
+        res.setUsuario(user);
 
         final Intent alarmIntent = new Intent(AltaReservaActivity.this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(AltaReservaActivity.this, 0, alarmIntent, 0);
@@ -109,12 +113,9 @@ public class AltaReservaActivity extends AppCompatActivity {
 
 
                 String dtStart = fecha_inicio.getText().toString();
-
                 res.setFechaInicio(dtStart);
 
-
                 String dtStart2 = fecha_fin.getText().toString();
-
                 res.setFechaFin(dtStart2);
 
 
@@ -123,9 +124,6 @@ public class AltaReservaActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Se ha reservado el alojamiento", Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(getApplicationContext(), ListaReservaActivity.class);
-
-
-
                 startActivityForResult(intent, 0);
 
 
@@ -143,7 +141,6 @@ public class AltaReservaActivity extends AppCompatActivity {
                 calendar.setTimeInMillis(System.currentTimeMillis());
                 calendar.set(Calendar.HOUR_OF_DAY, 10);
                 calendar.set(Calendar.MINUTE, 30);
-
 
                 alarmIntent.putExtra("Reserva", res);
                 /* Repetir cada 15 segundps */

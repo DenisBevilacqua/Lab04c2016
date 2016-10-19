@@ -1,5 +1,6 @@
 package dam.isi.frsf.utn.edu.ar.laboratorio04;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -27,6 +28,7 @@ import android.widget.TextView;
 import java.util.Arrays;
 
 import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Ciudad;
+import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Usuario;
 import dam.isi.frsf.utn.edu.ar.laboratorio04.utils.FormBusqueda;
 
 public class MainActivity extends AppCompatActivity
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity
     private EditText txtHuespedes;
     private Switch swFumadores;
     private FormBusqueda frmBusq;
+    private Usuario user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +90,7 @@ public class MainActivity extends AppCompatActivity
             frmBusq.setPermiteFumar(swFumadores.isChecked());
             i.putExtra("esBusqueda",true);
             i.putExtra("frmBusqueda",frmBusq);
+            if(user != null)i.putExtra("Usuario", user);
             startActivity(i);
         }
     };
@@ -179,7 +184,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_perfil:
                 Intent i3 = new Intent(MainActivity.this,PreferenciasActivity.class);
-                startActivity(i3);
+                startActivityForResult(i3, 3);
                 break;
             case R.id.nav_reservas:
                 Intent i2 = new Intent(MainActivity.this,ListaReservaActivity.class);
@@ -192,5 +197,13 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent intent) {
+        if (resultCode == Activity.RESULT_OK && requestCode == 3) {
+            user = (Usuario) intent.getSerializableExtra("result");
+            Log.d("UriString en Main", user.getUriString());
+        }
     }
 }
