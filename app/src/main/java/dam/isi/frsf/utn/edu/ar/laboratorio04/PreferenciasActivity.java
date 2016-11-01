@@ -25,7 +25,6 @@ public class PreferenciasActivity extends AppCompatActivity {
     static Uri chosenRingtone;
     private static Usuario usuario;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

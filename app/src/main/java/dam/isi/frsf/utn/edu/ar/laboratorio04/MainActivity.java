@@ -183,7 +183,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_ofertas:
                 break;
             case R.id.nav_perfil:
-                Intent i3 = new Intent(MainActivity.this,PreferenciasActivity.class);
+                /*Intent i3 = new Intent(MainActivity.this,PreferenciasActivity.class);
+                startActivityForResult(i3, 3);*/
+                Intent i3 = new Intent(MainActivity.this,SettingsActivity.class);
                 startActivityForResult(i3, 3);
                 break;
             case R.id.nav_reservas:

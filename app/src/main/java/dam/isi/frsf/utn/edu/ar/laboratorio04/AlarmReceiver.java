@@ -70,15 +70,17 @@ public class AlarmReceiver extends BroadcastReceiver {
         mBuilder.setPriority(NotificationCompat.PRIORITY_MAX);
 
         mBuilder.setContentIntent(contentIntent);
-        //mBuilder.setDefaults(Notification.DEFAULT_SOUND);
+        mBuilder.setDefaults(Notification.DEFAULT_SOUND);
 
         //PreferenciasActivity p = new PreferenciasActivity();
 
         //Usuario user = new Usuario();
         //Toast.makeText(context, user.getUri().toString() , Toast.LENGTH_SHORT).show();
-        String uriString = reserva.getUsuario().getUriString();
+
+
+        /*String uriString = reserva.getUsuario().getUriString();
         Uri uri = Uri.parse(uriString);
-        mBuilder.setSound(uri);
+        mBuilder.setSound(uri);*/
 
 
         mBuilder.setAutoCancel(true);
