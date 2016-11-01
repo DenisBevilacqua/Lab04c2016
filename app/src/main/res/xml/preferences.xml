@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:key="pref_name"
+        android:title="@string/pref_name"
+        android:dialogTitle="@string/pref_name"
+        android:summary="@string/pref_name_summary"
+        android:defaultValue="Nombre de usuario" />
+    <EditTextPreference
+        android:key="pref_email"
+        android:title="@string/pref_email"
+        android:dialogTitle="@string/pref_email_desc"
+        android:summary="@string/pref_email_summ"
+        android:defaultValue="14" />
+    <RingtonePreference
+        android:key="pref_tone"
+        android:title="@string/pref_tone"
+        android:summary="@string/pref_tone_summ"
+        android:showDefault="true"
+        android:showSilent="true"/>
+</PreferenceScreen>
